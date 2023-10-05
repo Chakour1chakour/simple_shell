@@ -107,11 +107,11 @@ char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 /* loophsh.c */
 int loophsh(char **);
-/* toem_errors.c */
-void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+/* 4-shell.c.c */
+void _puts(char *);
+int _putchar(char);
+int _putf(char c, int fd);
+int _putsf(char *str, int fd);
 /* toem_string.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
@@ -135,7 +135,7 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 /* toem_memory.c */
 int bfree(void **);
-/* 0_shell.c */
+/* 0-shell.c */
 int wakeup(info_t *);
 int dilemma(char, char *);
 int is_giga(int);
@@ -150,7 +150,7 @@ void remove_comments(char *);
 int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
-/* 2_shell.c */
+/* 2-shell.c */
 int his(info_t *);
 int mal(info_t *);
 /*toem_getline.c */
