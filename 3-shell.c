@@ -12,29 +12,29 @@ int c_print_environment(info_t *c_info)
 }
 
 /**
- * customSetEnv - Initialize a new environment variable
+ * c_set_environment_variable - Initialize a new environment variable
  *                                   or modify an existing one.
  * @c_info: Structure containing potential arguments.
  * Return: 0 on success, 1 on failure.
  */
-int customSetEnv(info_t *c_info, char *name, char *value)
+int c_set_environment_variable(info_t *c_info)
 {
     if (c_info->argc != 3)
     {
         _eputs("Incorrect number of arguments\n");
         return (1);
     }
-    if (setenv(name, value, 1) == 0)
-        return (0);
-    return (1);
+    _custom_setenv(c_info, c_info->argv[1], c_info->argv[2]);
+    return (0);
 }
 
+
 /**
- * customUnsetEnv - Remove an environment variable.
+ * c_unset_environment_variable - Remove an environment variable.
  * @c_info: Structure containing potential arguments.
  * Return: Always 0.
  */
-int customUnsetEnv(info_t *c_info, char *name)
+int c_unset_environment_variable(info_t *c_info)
 {
     int i;
 
@@ -43,8 +43,8 @@ int customUnsetEnv(info_t *c_info, char *name)
         _eputs("Too few arguments.\n");
         return (1);
     }
-    for (i = 1; i <= c_info->argc; i++)
-        unsetenv(name);
+    for (i = 1; i < c_info->argc; i++)
+        _unsetenv(c_info, c_info->argv[i]);
 
     return (0);
 }

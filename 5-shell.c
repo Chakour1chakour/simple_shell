@@ -1,24 +1,24 @@
 #include "shell.h"
 
 /**
- * cStringToInt - converts a string to an integer
- * @string: the string to be converted
+ * dalemma - converts a string to an integer
+ * @s: the string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
-int cStringToInt(char *string)
+int dalemma(char *s)
 {
-	int index = 0;
+	int i = 0;
 	unsigned long int result = 0;
 
-	if (*string == '+')
-		string++;  
-	for (index = 0;  string[index] != '\0'; index++)
+	if (*s == '+')
+		s++;  /* TODO: why does this make main return 255? */
+	for (i = 0;  s[i] != '\0'; i++)
 	{
-		if (string[index] >= '0' && string[index] <= '9')
+		if (s[i] >= '0' && s[i] <= '9')
 		{
 			result *= 10;
-			result += (string[index] - '0');
+			result += (s[i] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -29,79 +29,81 @@ int cStringToInt(char *string)
 }
 
 /**
- * pCE - prints an error message
+ * p_error - prints an error message
  * @inf: the parameter & return info struct
- * @eStr: string containing specified error type
+ * @str: string containing specified error type
+ * Return: 0 if no numbers in string, converted number otherwise
+ *        -1 on error
  */
-void pCE(info_t *inf, char *eStr)
+void p_error(info_t *inf, char *str)
 {
-	_customPuts(inf->fname);
-	_customPuts(": ");
-	printCustomInt(inf->line_count, STDERR_FILENO);
-	_customPuts(": ");
-	_customPuts(inf->argv[0]);
-	_customPuts(": ");
-	_customPuts(eStr);
+	_eputs(inf->fname);
+	_eputs(": ");
+	print_d(inf->line_count, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(inf->argv[0]);
+	_eputs(": ");
+	_eputs(str);
 }
 
 /**
- * pCI - function prints a decimal (integer) number (base 10)
+ * print - function prints a decimal (integer) number (base 10)
  * @input: the input
- * @filedescriptor: the filedescriptor to write to
+ * @fde: the filedescriptor to write to
  *
  * Return: number of characters printed
  */
-int pCI(int input, int filedescriptor)
+int print(int input, int fde)
 {
-	int (*customPutsChar)(char) = _customPuts;
+	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
-	unsigned int absoluteValue, current;
+	unsigned int _abs_, current;
 
-	if (filedescriptor == STDERR_FILENO)
-		customPutsChar = _customPuts;
+	if (fd == STDERR_FILENO)
+		__putchar = _eputchar;
 	if (input < 0)
 	{
-		absoluteValue = -input;
-		customPutsChar('-');
+		_abs_ = -input;
+		__putchar('-');
 		count++;
 	}
 	else
-		absoluteValue = input;
-	current = absoluteValue;
+		_abs_ = input;
+	current = _abs_;
 	for (i = 1000000000; i > 1; i /= 10)
 	{
-		if (absoluteValue / i)
+		if (_abs_ / i)
 		{
-			customPutsChar('0' + current / i);
+			__putchar('0' + current / i);
 			count++;
 		}
 		current %= i;
 	}
-	customPutsChar('0' + current);
+	__putchar('0' + current);
 	count++;
 
 	return (count);
 }
 
 /**
- * cCNumber - converter function, a clone of itoa
- * @number: number
+ * c_number - converter function, a clone of itoa
+ * @num: number
  * @base: base
  * @flags: argument flags
  *
  * Return: string
  */
-char *cCNumber(long int number, int base, int flags)
+char *c_number(long int num, int base, int flags)
 {
 	static char *array;
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long n = number;
+	unsigned long n = num;
 
-	if (!(flags & CONVERT_UNSIGNED) && number < 0)
+	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
-		n = -number;
+		n = -num;
 		sign = '-';
 
 	}
@@ -120,10 +122,12 @@ char *cCNumber(long int number, int base, int flags)
 }
 
 /**
- * rCC - function replaces first instance of '#' with '\0'
+ * r_comments - function replaces first instance of '#' with '\0'
  * @buf: address of the string to modify
+ *
+ * Return: Always 0;
  */
-void rCC(char *buf)
+void r_comments(char *buf)
 {
 	int i;
 
@@ -134,3 +138,4 @@ void rCC(char *buf)
 			break;
 		}
 }
+
