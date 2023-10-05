@@ -140,16 +140,16 @@ int wakeup(info_t *);
 int dilemma(char, char *);
 int is_giga(int);
 int conin(char *);
-/* toem_errors1.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
-/* toem_builtin.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+/* 5-shell.c */
+int cStringToInt(char *);
+void pCE(info_t *, char *);
+int pCI(int, int);
+char *cCNumber(long int, int, int);
+void rCC(char *);
+/* 1-shell.c */
+int c_exit(info_t *);
+int c_help(info_t *);
+int c_change_directory(info_t *);
 /* 2-shell.c */
 int his(info_t *);
 int mal(info_t *);
@@ -161,12 +161,12 @@ void sigintHandler(int);
 void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
-/* toem_environ.c */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+/* 3-shell.c */
+int c_print_environment(info_t *);
+int c_set_environment_variable(info_t *);
+int c_unset_environment_variable(info_t *);
+int p_environment_list(info_t *);
+char *c_get_environment_variable(info_t *, const char *);
 /* toem_getenv.c */
 char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
