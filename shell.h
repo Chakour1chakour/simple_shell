@@ -148,9 +148,9 @@ int pCI(int, int);
 char *cCNumber(long int, int, int);
 void rCC(char *);
 /* 1-shell.c */
-int c_exit(info_t *);
-int c_help(info_t *);
-int c_change_directory(info_t *);
+int _cexit(info_t *);
+int _cd(info_t *);
+int _wakeup(info_t *);
 /* 2-shell.c */
 int his(info_t *);
 int mal(info_t *);
@@ -196,4 +196,14 @@ void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
+/* Function Declarations Added */
+int _erratoi(char *s);
+void print_error(info_t *info, char *estr);
+char *_getenv(info_t *info, char *name);
+void _puts(char *str);
+int _putchar(char c);
+void _eputs(char *str);
+int _eputchar(char c);
+void _setenv(info_t *info, char *name, char *value);
+
 #endif
