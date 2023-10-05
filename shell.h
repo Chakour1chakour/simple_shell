@@ -73,7 +73,7 @@ int err_num;
 int linecount_flag;
 char *fname;
 list_t *env;
-list_t *history;
+list_t *his;
 list_t *alias;
 char **environ;
 int env_changed;
@@ -107,11 +107,11 @@ char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 /* loophsh.c */
 int loophsh(char **);
-/* toem_errors.c */
-void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+/* 4-shell.c.c */
+void _puts(char *);
+int _putchar(char);
+int _putf(char c, int fd);
+int _putsf(char *str, int fd);
 /* toem_string.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
@@ -135,7 +135,7 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 /* toem_memory.c */
 int bfree(void **);
-/* meh_conin.c */
+/* 0-shell.c */
 int wakeup(info_t *);
 int dilemma(char, char *);
 int is_giga(int);
@@ -150,9 +150,9 @@ void remove_comments(char *);
 int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
-/* toem_builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+/* 2-shell.c */
+int his(info_t *);
+int mal(info_t *);
 /*toem_getline.c */
 ssize_t get_input(info_t *);
 int _getline(info_t *, char **, size_t *);
@@ -178,17 +178,17 @@ int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
 /* toem_lists.c */
-list_t *add_node(list_t **, const char *, int);
-list_t *add_node_end(list_t **, const char *, int);
+list_t *add_nd(list_t **, const char *, int);
+list_t *add_nd_end(list_t **, const char *, int);
 size_t print_list_str(const list_t *);
-int delete_node_at_index(list_t **, unsigned int);
+int delete_nd_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 /* toem_lists1.c */
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
+list_t *nd_starts_with(list_t *, char *, char);
+ssize_t get_nd_index(list_t *, list_t *);
 /* toem_vars.c */
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
