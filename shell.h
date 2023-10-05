@@ -143,11 +143,11 @@ int dilemma(char, char *);
 int is_giga(int);
 int conin(char *);
 /* 5-shell.c */
-int cStringToInt(char *);
-void pCE(info_t *, char *);
-int pCI(int, int);
-char *cCNumber(long int, int, int);
-void rCC(char *);
+int dalemma(char *);
+void p_error(info_t *, char *);
+int print(int, int);
+char *c_number(long int, int, int);
+void r_comments(char *);
 /* 1-shell.c */
 int _cexit(info_t *);
 int _cd(info_t *);
@@ -206,5 +206,14 @@ int _putchar(char c);
 void _eputs(char *str);
 int _eputchar(char c);
 void _custom_setenv(info_t *info, char *name, char *value);
+/* print_d */
+/**
+ * print_d - prints an integer to a file descriptor
+ * @input: the integer to be printed
+ * @fde: the file descriptor to write to
+ *
+ * Return: number of characters printed
+ */
+int print_d(int input, int fde);
 
 #endif
