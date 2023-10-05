@@ -83,6 +83,7 @@ int cmd_buf_type; /* CMD_type ||, &&, ; */
 int readfd;
 int histcount;
 int err_atoi;
+list_t *environment; // Added environment member
 } info_t;
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
@@ -204,6 +205,6 @@ void _puts(char *str);
 int _putchar(char c);
 void _eputs(char *str);
 int _eputchar(char c);
-void _setenv(info_t *info, char *name, char *value);
+void _custom_setenv(info_t *info, char *name, char *value);
 
 #endif
