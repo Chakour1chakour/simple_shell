@@ -135,11 +135,11 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 /* toem_memory.c */
 int bfree(void **);
-/* toem_atoi.c */
-int interactive(info_t *);
-int is_delim(char, char *);
-int _isalpha(int);
-int _atoi(char *);
+/* meh_conin.c */
+int wakeup(info_t *);
+int dilemma(char, char *);
+int is_giga(int);
+int conin(char *);
 /* toem_errors1.c */
 int _erratoi(char *);
 void print_error(info_t *, char *);

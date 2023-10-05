@@ -1,78 +1,64 @@
 #include "shell.h"
-
 /**
- * c_string_h - returns the length of a string
- * @str: the string to look up
- *
- * Return: integer length of the string
- */
-int c_string_h(char *str)
+* wakeup - returns true if shell is in wakeup mode
+* @wakein: struct address
+**
+Return: 1 if wakeup mode, 0 otherwise
+*/
+int wakeup(info_t *wakein)
 {
-    int h = 0;
-
-    if (!str)
-        return (0);
-
-    while (*str++)
-        h++;
-    return (h);
-} 
- 
-/**
- * c_string_cmp - performs comparison of two strings.
- * @str1: the first string
- * @str2: the second string
- *
- * Return: negative if str1 < str2, positive if str1 > str2, zero if str1 == str2
- */
-int c_string_cmp(char *str1, char *str2)
-{
-    while (*str1 && *str2)
-    {
-        if (*str1 != *str2)
-            return (*str1 - *str2);
-        str1++;
-        str2++;
-    }
-    if (*str1 == *str2)
-        return (0);
-    else
-        return (*str1 < *str2 ? -1 : 1);
+return (isatty(STDIN_FILENO) && wakein->readfd <= 2);
 }
-
 /**
- * c_string_cat - concatenates two strings
- * @destination: the destination buffer
- * @source: the source buffer
- *
- * Return: a pointer to the destination buffer
- */
-char *c_string_cat(char *destination, const char *source)
+* dilemma - checks if character is a delimeter
+* @h: the char to check
+* @limde: the delimeter string
+* Return: 1 if true, 0 if false
+*/
+int dilemma(char h, char *limde)
 {
-    char *result = destination;
-
-    while (*destination)
-        destination++;
-    while (*source)
-        *destination++ = *source++;
-    *destination = *source;
-    return result;
-} 
-
-/**
- * c_starts_with - checks if a string starts with a specified substring.
- * @str: the string to search
- * @substring: the substring to find
- *
- * Return: a pointer to the next character in the string after the substring, or NULL if not found
- */
-char *c_starts_with(const char *str, const char *substring)
-{
-    while (*substring)
-    {
-        if (*substring++ != *str++)
-            return NULL;
-    }
-    return (char *)str;
+while (*limde)
+if (*limde++ == h)
+return (1);
+return (0);
 }
-
+/**
+* is_giga - checks for alphabetic character
+* @h: The character to input
+* Return: 1 if h is alphabetic, 0 otherwise
+*/
+int is_giga(int h)
+{
+if ((h >= 'a' && h <= 'z') || (h >= 'A' && h <= 'Z'))
+return (1);
+else
+return (0);
+}
+/**
+* _conin - converts a string to an integer
+* @c: the string to be converted
+* Return: 0 if no numbers in string, converted number otherwise
+*/
+int _conin(char *c)
+{
+int i, sign = 1, flag = 0, output;
+unsigned int result = 0;
+for (i = 0; c[i] != '\0' && flag != 2; i++)
+{
+if (c[i] == '-')
+sign *= -1;
+if (c[i] >= '0' && c[i] <= '9')
+{
+flag = 1;
+result *= 10;
+result += (c[i] - '0');
+}
+else if (flag == 1)
+flag = 2;
+}
+if (sign == -1)
+output = -result;
+else
+output = result;
+return (output);
+}
