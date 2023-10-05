@@ -13,16 +13,16 @@ int c_exit(info_t *c_info)
 
     if (c_info->argv[1]) /* If there is an exit argument */
     {
-        exit_check = err_atoi(c_info->argv[1]);
+        exit_check = _erratoi(c_info->argv[1]);
         if (exit_check == -1)
         {
             c_info->status = 2;
             print_error(c_info, "Illegal number: ");
-            e_puts(c_info->argv[1]);
-            e_putchar('\n');
+            _puts(c_info->argv[1]);
+            _putchar('\n');
             return (1);
         }
-        c_info->err_num = err_atoi(c_info->argv[1]);
+        c_info->err_num = _erratoi(c_info->argv[1]);
         return (-2);
     }
     c_info->err_num = -1;
@@ -40,9 +40,9 @@ int c_help(info_t *c_info)
 	char **arg_array;
 
 	arg_array = c_info->argv;
-	e_puts("help call works. Function not yet implemented \n");
+	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		e_puts(*arg_array); /* temp att_unused workaround */
+		_puts(*arg_array); /* temp att_unused workaround */
 	return (0);
 }
 
@@ -59,7 +59,7 @@ int c_change_directory(info_t *c_info)
 
     current_path = getcwd(buffer, 1024);
     if (!current_path)
-        e_puts("TODO: >>getcwd failure emsg here<<\n");
+        _puts("TODO: >>getcwd failure emsg here<<\n");
     if (!c_info->argv[1])
     {
         new_path = getenv(c_info, "HOME=");
@@ -72,12 +72,12 @@ int c_change_directory(info_t *c_info)
     {
         if (!getenv(c_info, "OLDPWD="))
         {
-            e_puts(current_path);
-            e_putchar('\n');
+            _puts(current_path);
+            _putchar('\n');
             return (1);
         }
-        e_puts(getenv(c_info, "OLDPWD="));
-        e_putchar('\n');
+        _puts(getenv(c_info, "OLDPWD="));
+        _putchar('\n');
         change_dir_status = chdir((new_path = getenv(c_info, "OLDPWD=")) ? new_path : "/");
     }
     else
@@ -85,8 +85,8 @@ int c_change_directory(info_t *c_info)
     if (change_dir_status == -1)
     {
         print_error(c_info, "can't cd to ");
-        e_puts(c_info->argv[1]);
-        e_putchar('\n');
+        _puts(c_info->argv[1]);
+        _putchar('\n');
     }
     else
     {
