@@ -82,6 +82,7 @@ char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
 int cmd_buf_type; /* CMD_type ||, &&, ; */
 int readfd;
 int histcount;
+int err_atoi;
 } info_t;
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
