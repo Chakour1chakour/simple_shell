@@ -125,9 +125,9 @@ char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 /* 6-shell.c */
-char *strncpy(char *, char *, int);
-char *strncat(char *, char *, int);
-char *strchr(char *, char);
+char *my_strncpy(char *, const char *, size_t);
+char *my_strncat(char *, const char *, size_t);
+char *my_strchr(const char *, int);
 /* toem_tokenizer.c */
 char **strtow(char *, char *);
 char **strtow2(char *, char);
