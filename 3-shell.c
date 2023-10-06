@@ -35,13 +35,13 @@ char *genv(info_t *inf, const char *name)
 }
 
 /**
- * setenv - Initialize a new environment variable,
+ * my_setenv - Initialize a new environment variable,
  *             or modify an existing one
  * @inf: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: Always 0
  */
-int setenv(info_t *inf)
+int my_setenv(info_t *inf)
 {
 	if (inf->argc != 3)
 	{
@@ -54,12 +54,12 @@ int setenv(info_t *inf)
 }
 
 /**
- * unsetenv - Remove an environment variable
+ * my_unsetenv - Remove an environment variable
  * @inf: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  * Return: Always 0
  */
-int unsetenv(info_t *inf)
+int my_unsetenv(info_t *inf)
 {
 	int i;
 
@@ -86,8 +86,8 @@ int p_env_list(info_t *inf)
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
-		add_node_end(&node, environ[i], 0);
-	info->env = node;
+		add_nd_end(&node, environ[i], 0);
+	inf->env = node;
 	return (0);
 }
 

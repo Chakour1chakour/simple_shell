@@ -166,8 +166,6 @@ void free_info(info_t *, int);
 /* 3-shell.c */
 int env(info_t *);
 char *genv(info_t *, const char *);
-int setenv(info_t *);
-int unsetenv(info_t *);
 int p_env_list(info_t *);
 char *c_get_environment_variable(info_t *, const char *);
 /* toem_getenv.c */
