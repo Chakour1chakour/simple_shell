@@ -1,13 +1,13 @@
 #include "shell.h"
 /**
-* input_buf - buffers chained commands
+* inbuf - buffers chained commands
 * @par: parameter struct
 * @bf: address of buffer
 * @len: address of len var
 **
 Return: bytes read
 */
-ssize_t input_bf(info_t *par, char **bf, size_t *len)
+ssize_t inbuf(info_t *par, char **bf, size_t *len)
 {
 ssize_t r = 0;
 size_t len_p = 0;
@@ -54,7 +54,7 @@ static size_t i, j, len;
 ssize_t r = 0;
 char **bf_p = &(par->arg), *p;
 _putchar(BF_FLUSH);
-r = input_bf(par, &bf, &len);
+r = inbuf(par, &bf, &len);
 if (r == -1) /* EOF */
 return (-1);
 if (len) /* we have commands left in the chain buffer */
