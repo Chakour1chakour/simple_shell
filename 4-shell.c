@@ -25,15 +25,15 @@ Return: On success 1.
 int _putchar(char ch)
 {
 static int i;
-static char buf[WRITE_BUF_SIZE];
-if (ch == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+static char bf[WRITE_BF_SIZE];
+if (ch == BF_FLUSH || i >= WRITE_BF_SIZE)
 {
-write(2, buf, i);
+write(2, bf, i);
 i = 0;
 } if (
 ch
-!= BUF_FLUSH)
-buf[i++] = ch;
+!= BF_FLUSH)
+bf[i++] = ch;
 return (1);
 }
 /**
@@ -46,15 +46,15 @@ Return: On success 1.
 int _putf(char ch, int fd)
 {
 static int i;
-static char buf[WRITE_BUF_SIZE];
-if (ch == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+static char bf[WRITE_BF_SIZE];
+if (ch == BF_FLUSH || i >= WRITE_BF_SIZE)
 {
-write(fd, buf, i);
+write(fd, bf, i);
 i = 0;
 } if (
 ch
-!= BUF_FLUSH)
-buf[i++] = ch;
+!= BF_FLUSH)
+bf[i++] = ch;
 return (1);
 }
 /**
