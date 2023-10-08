@@ -185,7 +185,7 @@ ssize_t getin(info_t *);
 int getlne(info_t *, char **, size_t *);
 void sigHand(int);
 
-/* toem_getinfo.c */
+/* info */
 void clear_info(info_t *);
 void set_info(info_t *, char **);
 void free_info(info_t *, int);
@@ -197,10 +197,10 @@ int my_setenv(info_t *);
 int my_unsetenv(info_t *);
 int p_env_list(info_t *);
 
-/* toem_getenv.c */
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+/* 8-shell.c */
+char **my_environ(info_t *);
+int my_unsetenv(info_t *, char *);
+int my_setenv(info_t *, char *, char *);
 
 /* toem_history.c */
 char *get_history_file(info_t *info);
