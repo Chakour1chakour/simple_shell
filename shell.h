@@ -197,10 +197,10 @@ int my_setenv(info_t *);
 int my_unsetenv(info_t *);
 int p_env_list(info_t *);
 
-/* 8-shell.c */
-char **my_environ(info_t *);
-int my_unsetenv(info_t *, char *);
-int my_setenv(info_t *, char *, char *);
+/* getenv.c code */
+
+
+
 
 /* toem_history.c */
 char *get_history_file(info_t *info);
@@ -239,6 +239,9 @@ int _putchar(char c);
 void _eputs(char *str);
 int _eputchar(char c);
 void _custom_setenv(info_t *info, char *name, char *value);
+int my_setenv(info_t *, char *, char *);
+int my_unsetenv(info_t *, char *);
+int populate_env_list(info_t *);
 
 /* print_d */
 /**
