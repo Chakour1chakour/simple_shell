@@ -13,7 +13,7 @@ int _cexit(info_t *inf)
 
 	if (inf->argv[1]) /* If there is an exit arguement */
 	{
-		exitcheck = _erratoi(inf->argv[1]);
+		exitcheck = err_atoi(inf->argv[1]);
 		if (exitcheck == -1)
 		{
 			inf->status = 2;
@@ -22,7 +22,7 @@ int _cexit(info_t *inf)
 			_putchar('\n');
 			return (1);
 		}
-		inf->err_num = _erratoi(inf->argv[1]);
+		inf->err_num = err_atoi(inf->argv[1]);
 		return (-2);
 	}
 	inf->err_num = -1;

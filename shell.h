@@ -96,7 +96,7 @@ typedef struct passinfo
 } info_t;
 
 #define INFO_INIT \
-    {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0}
+    {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0, 0}
 
 /**
  * struct builtin - contains a builtin string and related function
@@ -193,15 +193,11 @@ void free_info(info_t *, int);
 /* 3-shell.c */
 int env(info_t *);
 char *genv(info_t *, const char *);
-int my_setenv(info_t *);
-int my_unsetenv(info_t *);
 int p_env_list(info_t *);
-
+int _unsetenv(info_t *, char *);
+int _setenv(info_t *, char *, char *);
 /* getenv.c code */
-
-
-
-
+char **get_environ(info_t *);
 /* toem_history.c */
 char *get_history_file(info_t *info);
 int write_history(info_t *info);
@@ -231,7 +227,6 @@ int replace_vars(info_t *);
 int replace_string(char **, char *);
 
 /* Function Declarations Added */
-int _erratoi(char *s);
 void print_error(info_t *info, char *estr);
 char *_getenv(info_t *info, char *name);
 void _puts(char *str);
@@ -239,10 +234,8 @@ int _putchar(char c);
 void _eputs(char *str);
 int _eputchar(char c);
 void _custom_setenv(info_t *info, char *name, char *value);
-int my_setenv(info_t *, char *, char *);
-int my_unsetenv(info_t *, char *);
 int populate_env_list(info_t *);
-
+int err_atoi(char *);
 /* print_d */
 /**
  * print_d - prints an integer to a file descriptor
